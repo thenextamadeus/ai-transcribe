@@ -3,18 +3,18 @@
 # NOTE: this example requires PyAudio because it uses the Microphone class
 
 import time
-
+import whisper
 import speech_recognition as sr
 
 
 # this is called from the background thread
-def callback(recognizer, audio):
+def callback(recognizer_instance, audio):
     # received audio data, now we'll recognize it using Google Speech Recognition
     try:
         # for testing purposes, we're just using the default API key
         # to use another API key, use `r.recognize_google(audio, key="GOOGLE_SPEECH_RECOGNITION_API_KEY")`
         # instead of `r.recognize_google(audio)`
-        print("Google Speech Recognition thinks you said " + recognizer.recognize_google(audio))
+        print("Google Speech Recognition thinks you said " + recognizer_instance.recognize_whisper(audio))
     except sr.UnknownValueError:
         print("Google Speech Recognition could not understand audio")
     except sr.RequestError as e:
