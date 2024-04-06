@@ -19,18 +19,21 @@ guy = ""
 while True:
     def get_adio():
         r = sr.Recognizer()
-        with sr.Microphone(device_index=1) as source:
+        with sr.Microphone() as source:
+            print("Listening")
             audio = r.listen(source)
+            print("source passed")
             said = ""
 
             try:
-                said = r.recognize_google(audio)
-                print(said)
+                print("Recognizing")
+                said = r.recognize_google(audio) # Google Speech Recognition
                 global guy 
                 guy = said
                 
 
                 if "Friday" in said:
+                    print("Friday")
                     words = said.split()
                     new_string = ' '.join(words[1:])
                     print(new_string) 
@@ -47,6 +50,7 @@ while True:
         return said
 
     if "stop" in guy:
+        print("Stopping")
         break
 
 
