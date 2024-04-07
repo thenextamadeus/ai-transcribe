@@ -4,15 +4,14 @@ import pyaudio
 import speech_recognition as sr
 from playsound import playsound 
 from gtts import gTTS
-import openai
+from openai import OpenAI
 
 
 api_key = "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"
-
 lang ='en'
 
-openai.api_key = api_key
-
+client = OpenAI()
+client.api_key = api_key
 
 guy = ""
 
@@ -26,20 +25,35 @@ while True:
             said = ""
 
             try:
-                print("Recognizing")
+                print("initializing said")
+                # Google Speech Recognition, Speech to text
                 said = r.recognize_google(audio) # Google Speech Recognition
+
+                # Attach the recognized speech to the global variable
                 global guy 
                 guy = said
                 
 
                 if "Friday" in said:
-                    print("Friday")
+                    print("'Friday' detected in said")
+
+                    # Formatting the string
                     words = said.split()
                     new_string = ' '.join(words[1:])
                     print(new_string) 
-                    completion = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=[{"role": "user", "content":said}])
-                    text = completion.choices[0].message.content
+
+                    # Instruct ChatGPT, utilizing "said" 
+                    completion = client.chat.completions.create(model="gpt-3.5-turbo", messages=[
+                                                                    {"role": "system", "content": "You are a helpful assistant."},
+                                                                    {"role": "user", "content": said}
+                                                                 ]
+                                                                 )
+                    print("said passed to openai")
+                    text = completion.choices[0].message
+                    
+                    # Text to speech, using gTTS
                     speech = gTTS(text = text, lang=lang, slow=False, tld="com.au")
+                    print("text passed to gTTS")
                     speech.save("welcome1.mp3")
                     playsound.playsound("welcome1.mp3")
                     
