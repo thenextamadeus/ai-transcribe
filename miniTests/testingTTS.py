@@ -1,3 +1,5 @@
+# Bug fix from OpenAI documentation, github comment https://github.com/openai/openai-python/issues/864#issuecomment-1962128107
+
 from openai import OpenAI
 
 apiKey = "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"

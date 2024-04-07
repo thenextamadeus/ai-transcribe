@@ -1,4 +1,9 @@
 # Based on Jarvis Video: https://www.youtube.com/watch?v=RAKpMYOlttA
+# GTT for Recognition https://stackoverflow.com/questions/59272258/how-to-use-gtts-library-to-read-a-text-file
+# And utilizing ChatGPT
+# And Whisper STT https://platform.openai.com/docs/guides/text-to-speech
+# # Formerly GTT for STT https://stackoverflow.com/questions/59272258/how-to-use-gtts-library-to-read-a-text-file
+# and playsound for audio https://pypi.org/project/playsound/
 
 import os
 import time
@@ -61,6 +66,8 @@ while True:
                     # speech.save("welcome1.mp3")
                     # playsound("welcome1.mp3")
 
+
+                    # Text to speech, using OpenAI
                     with client.audio.speech.with_streaming_response.create(
                         model="tts-1",
                         voice="nova",
