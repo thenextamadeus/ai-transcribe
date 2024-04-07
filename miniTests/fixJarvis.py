@@ -1,3 +1,5 @@
+# Debugging the microphone, and understanding how SR library works with GTT
+
 import os
 import time
 import pyaudio

@@ -3,7 +3,7 @@
 from openai import OpenAI
 client = OpenAI()
 
-Authorization: Bearer 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
+# Authorization: Bearer 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
   
 
 
