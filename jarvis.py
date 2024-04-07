@@ -1,3 +1,5 @@
+# Based on Jarvis Video: https://www.youtube.com/watch?v=RAKpMYOlttA
+
 import os
 import time
 import pyaudio
@@ -7,20 +9,19 @@ from gtts import gTTS
 from openai import OpenAI
 
 
-api_key = "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"
+apiKey = "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"
 lang ='en'
 
-client = OpenAI()
-client.api_key = api_key
+client = OpenAI(api_key=apiKey)
 
 guy = ""
 
 while True:
-    def get_adio():
+    def get_audio():
         r = sr.Recognizer()
         with sr.Microphone() as source:
             print("Listening")
-            audio = r.listen(source)
+            audio = r.listen(source, phrase_time_limit=20)
             print("source passed")
             said = ""
 
@@ -34,23 +35,26 @@ while True:
                 guy = said
                 
 
-                if "Friday" in said:
-                    print("'Friday' detected in said")
+                if "unit 24 to echo" in said:
+                    print("call to action detected")
 
                     # Formatting the string
                     words = said.split()
                     new_string = ' '.join(words[1:])
-                    print(new_string) 
+                    print("request recorded: ", new_string) 
 
                     # Instruct ChatGPT, utilizing "said" 
                     completion = client.chat.completions.create(model="gpt-3.5-turbo", messages=[
                                                                     {"role": "system", "content": "You are a helpful assistant."},
-                                                                    {"role": "user", "content": said}
+                                                                    {"role": "user", "content": new_string}
                                                                  ]
                                                                  )
-                    print("said passed to openai")
+                    print("request passed to openai")
                     text = completion.choices[0].message
+                    print("openAI response: ", text)
                     
+                    text.read().replace("\n", " ")
+                    print("formatting response: ", text)
                     # Text to speech, using gTTS
                     speech = gTTS(text = text, lang=lang, slow=False, tld="com.au")
                     print("text passed to gTTS")
@@ -68,4 +72,4 @@ while True:
         break
 
 
-    get_adio()
+    get_audio()

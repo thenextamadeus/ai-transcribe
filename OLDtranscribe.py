@@ -1,4 +1,5 @@
-#!/usr/bin/env python3
+# Based on the example seen here: https://github.com/Uberi/speech_recognition/blob/master/examples/background_listening.py
+# Connecting SR to GTTS
 
 # NOTE: this example requires PyAudio because it uses the Microphone class
 

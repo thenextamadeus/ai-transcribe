@@ -1,3 +1,5 @@
+# Referencing the OpenAI API to transcribe audio files, testing how it works
+
 from openai import OpenAI
 client = OpenAI()
 
