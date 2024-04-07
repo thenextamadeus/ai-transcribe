@@ -8,13 +8,15 @@
 import os
 import time
 import pyaudio
+from dotenv import load_dotenv
 import speech_recognition as sr
 from playsound import playsound 
 from gtts import gTTS
 from openai import OpenAI
 
+load_dotenv()
 
-apiKey = "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"
+apiKey = os.getenv("APIKEY")
 lang ='en'
 
 client = OpenAI(api_key=apiKey)
