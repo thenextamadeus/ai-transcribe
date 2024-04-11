@@ -52,7 +52,7 @@ while True:
 
                     # Instruct ChatGPT, utilizing "said" 
                     completion = client.chat.completions.create(model="gpt-3.5-turbo", messages=[
-                                                                    {"role": "system", "content": "You are a helpful assistant to emergency medical responders. you are professional, to the point, and have a professional tone. Treat every question as if I am in an emergency situation. Keep your responses to a minimum of 3 sentences."},
+                                                                    {"role": "system", "content": "You are a helpful assistant."},
                                                                     {"role": "user", "content": new_string}
                                                                  ]
                                                                  )
@@ -60,26 +60,25 @@ while True:
                     chatText = completion.choices[0].message.content
                     print("openAI response: ", chatText)
                     
-                    # print("formatting response: ", chatText)
 
-                    # # Text to speech, using gTTS
+                    # # Text to speech, using gTTS ----------------------------------------------------------------------------
                     # speech = gTTS(text = str(chatText), lang=lang, slow=False, tld="com.au")
                     # print("text passed to gTTS")
                     # speech.save("welcome1.mp3")
                     # playsound("welcome1.mp3")
 
 
-                    # Text to speech, using OpenAI
-                    with client.audio.speech.with_streaming_response.create(
-                        model="tts-1",
-                        voice="nova",
-                        input=str(chatText)
-                    ) as response:
-                    # This doesn't seem to be *actually* streaming, it just creates the file
-                    # and then doesn't update it until the whole generation is finished
-                        response.stream_to_file("ttsResponses/speech.mp3")
+                    # # Text to speech, using OpenAI --------------------------------------------------------------------------
+                    # with client.audio.speech.with_streaming_response.create(
+                    #     model="tts-1",
+                    #     voice="nova",
+                    #     input=str(chatText)
+                    # ) as response:
+                    # # This doesn't seem to be *actually* streaming, it just creates the file
+                    # # and then doesn't update it until the whole generation is finished
+                    #     response.stream_to_file("ttsResponses/speech.mp3")
 
-                    playsound("ttsResponses/speech.mp3")
+                    # playsound("ttsResponses/speech.mp3")
 
                     
             except Exception:

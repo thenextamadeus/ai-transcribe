@@ -1,0 +1,31 @@
+{
+    "ChiefComplaint": {
+        "DispatchedPurpose": "String describing the purpose of the call as noted by dispatch",
+        "SceneComponents": [
+            "String describing any particular scene components"
+        ]
+    },
+    "History": {
+        "PatientHistory": "String describing any patient history noted by dispatch or found in additional notes over radio"
+    },
+    "Assessment": {
+        "AVPU": "String describing the AVPU assessment",
+        "OPQRST": "String describing the OPQRST assessment",
+        "Vitals": {
+            "Pulse": "80 BPM",
+            "Respiration": "18",
+            "BloodPressure": "120/80",
+            "Temperature": "98.6",
+            "Oxygen Saturation": "96"
+        },
+        "AudioRecording": "path/to/assessment_audio.mp4"
+    },
+    "Treatment": {
+        "ProvidedTreatment": "String describing any treatment provided",
+        "AudioRecording": "path/to/treatment_audio.mp4"
+    },
+    "Transport": {
+        "PatientStatus": "String describing how the patient did in transport",
+        "DropoffNotes": "String describing any dropoff notes"
+    }
+}
