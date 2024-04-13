@@ -69,16 +69,16 @@ while True:
 
 
                     # # Text to speech, using OpenAI --------------------------------------------------------------------------
-                    # with client.audio.speech.with_streaming_response.create(
-                    #     model="tts-1",
-                    #     voice="nova",
-                    #     input=str(chatText)
-                    # ) as response:
-                    # # This doesn't seem to be *actually* streaming, it just creates the file
-                    # # and then doesn't update it until the whole generation is finished
-                    #     response.stream_to_file("ttsResponses/speech.mp3")
+                    with client.audio.speech.with_streaming_response.create(
+                        model="tts-1",
+                        voice="nova",
+                        input=str(chatText)
+                    ) as response:
+                    # This doesn't seem to be *actually* streaming, it just creates the file
+                    # and then doesn't update it until the whole generation is finished
+                        response.stream_to_file("ttsResponses/speech.mp3")
 
-                    # playsound("ttsResponses/speech.mp3")
+                    playsound("ttsResponses/speech.mp3")
 
                     
             except Exception:
