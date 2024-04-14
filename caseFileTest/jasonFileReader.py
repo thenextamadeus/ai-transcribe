@@ -102,24 +102,10 @@ def chat_interaction(initial_context):
     # Load the JSON file containing categorized data
     categorized_data = load_json(initial_context)
     
-    # Construct initial system messages
-    initial_messages = [
-        {"role": "system", "content": "You are Echo, an AI assistant designed to provide critical information during ambulance rides."},
-        {"role": "system", "content": "You are operating in an extremely fast-paced environment, assisting EMR/paramedics as they respond to dispatch recordings."},
-        {"role": "system", "content": "Your goal is to quickly surface critical data from the transcripts to aid the responders."},
-    ]
-    
-    # Send initial system messages to ChatGPT
-    initial_completion = client.chat.completions.create(model="gpt-3.5-turbo", messages=initial_messages)
-    
-    # Print initial responses from ChatGPT
-    for choice in initial_completion.choices:
-        print("ChatGPT:", choice.message.content)
-    
     # Start the interaction loop
     while True:
         # Get user input
-        user_input = input("You (Echo): ")
+        user_input = input("You: ")
         
         # Exit the loop if user input is "exit"
         if user_input.lower() == "exit":
