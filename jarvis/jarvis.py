@@ -76,9 +76,9 @@ while True:
                     ) as response:
                     # This doesn't seem to be *actually* streaming, it just creates the file
                     # and then doesn't update it until the whole generation is finished
-                        response.stream_to_file("ttsResponses/speech.mp3")
+                        response.stream_to_file("jarvis/ttsResponses/speech.mp3")
 
-                    playsound("ttsResponses/speech.mp3")
+                    playsound("jarvis/ttsResponses/speech.mp3")
 
                     
             except Exception:
