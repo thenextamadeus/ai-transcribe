@@ -1,4 +1,4 @@
-# This is echo
+#This is echo
 A SCAD senior UX Design capstone that uses AI at the core of our product experience. 
 *Our repo is messy, scrappy, and barely functions <3 just how we like it.*
 
