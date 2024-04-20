@@ -1,22 +1,3 @@
-# Initialize libraries
-
-import os
-import json
-from dotenv import load_dotenv
-from gtts import gTTS
-from openai import OpenAI
-import speech_recognition as sr
-
-# Activate env
-
-load_dotenv()
-
-apiKey = os.getenv("APIKEY")
-lang ='en'
-
-client = OpenAI(api_key=apiKey)
-
-
 # Echo can transcribe and document information heard from the microphone
 # # Echo is listening for trigger words relating to categories
 # # Echo has categories like "vitals", "chief complaint", "scene info", "patient info", "patient history", "intervention", "time", "ems alert", "location"
