@@ -24,9 +24,9 @@ python3 -m pip install SpeechRecognition[whisper-local]
 
 
 **References:**
-> Based on Jarvis Video: https://www.youtube.com/watch?v=RAKpMYOlttA
-> GTT for Recognition https://stackoverflow.com/questions/59272258/how-to-use-gtts-library-to-read-a-text-file
-> utilizing ChatGPT
-> And Whisper STT https://platform.openai.com/docs/guides/text-to-speech
-> Formerly GTT for STT https://stackoverflow.com/questions/59272258/how-to-use-gtts-library-to-read-a-text-file
-> and playsound for audio https://pypi.org/project/playsound/
+- Based on Jarvis Video: https://www.youtube.com/watch?v=RAKpMYOlttA
+- GTT for Recognition https://stackoverflow.com/questions/59272258/how-to-use-gtts-library-to-read-a-text-file
+- utilizing ChatGPT
+- And Whisper STT https://platform.openai.com/docs/guides/text-to-speech
+- Formerly GTT for STT https://stackoverflow.com/questions/59272258/how-to-use-gtts-library-to-read-a-text-file
+- and playsound for audio https://pypi.org/project/playsound/
