@@ -14,13 +14,13 @@ Amadeus, Ghalib, Nina, Natalie, Avery
 
 
 *some raw initializing notes for later formatting*
-Brew Installations
-brew install portaudio
+[Brew Installations]
+[brew install portaudio]
 
-PIP Installations
-pip install pyaudio
-pip install SpeechRecognition
-python3 -m pip install SpeechRecognition[whisper-local]
+[PIP Installations]
+[pip install pyaudio]
+[pip install SpeechRecognition]
+[python3 -m pip install SpeechRecognition[whisper-local]]
 
 
 **References:**
