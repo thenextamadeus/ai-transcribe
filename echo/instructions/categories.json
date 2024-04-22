@@ -1,0 +1,35 @@
+{
+    "ChiefComplaint": {
+        "DispatchedPurpose": "",
+        "SceneComponents": []
+    },
+    "History": {
+        "PatientHistory": ""
+    },
+    "Assessment": {
+        "OPQRST": {
+            "Onset": "",
+            "Provocation": "",
+            "Quality": "",
+            "Radiation": "",
+            "Severity": "",
+            "Time": ""
+        },
+        "Vitals": {
+            "Pulse": "0",
+            "Respiration": "0",
+            "BloodPressure": "",
+            "Temperature": "0.0",
+            "OxygenSaturation": "0"
+        },
+        "AudioRecording": ""
+    },
+    "Treatment": {
+        "ProvidedTreatment": "",
+        "AudioRecording": ""
+    },
+    "Transport": {
+        "PatientStatus": "",
+        "DropoffNotes": ""
+    }
+}
