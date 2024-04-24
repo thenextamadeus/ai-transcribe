@@ -57,6 +57,7 @@ def save_vitals_data():
 # # # # Trigger Actions # # # #
 trigger_actions = {
     "document vitals": document_vitals,
+    
 }
 
 
