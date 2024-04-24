@@ -10,8 +10,8 @@ intent = "sr-triggers.py listens for trigger words and documets actions that tra
 
 # Global Parameters for Speech Recognition
 r = sr.Recognizer()
-r.pause_threshold = 0.7  # This represents the minimum length of silence (in seconds) that will register as the end of a phrase. The recognizer keeps listening until it encounters this duration of silence after speech.
-r.phrase_time_limit = 8  # This is the maximum number of seconds that the recognizer will allow a phrase to continue before stopping and returning the audio captured until that point.
+r.pause_threshold = 2  # This represents the minimum length of silence (in seconds) that will register as the end of a phrase. The recognizer keeps listening until it encounters this duration of silence after speech.
+r.phrase_time_limit = 4  # This is the maximum number of seconds that the recognizer will allow a phrase to continue before stopping and returning the audio captured until that point.
 
 
 # # # # Echo Actions # # # # 
@@ -87,7 +87,7 @@ with sr.Microphone() as source:
                         action()
                         break
                 
-                if "exit" in text:
+                if "exit exit" in text:
                     print("Exiting the program...")
                     break
 
