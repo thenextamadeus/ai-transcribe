@@ -29,7 +29,7 @@ gPhrase = 3 # This is the maximum number of seconds that the recognizer will all
 
 # Trigger Detection Parameters (shorter = potential faster response)
 tPause = 0.5
-tPhrase = 3
+tPhrase = 2
 
 # Load JSON files
 vitals_data = {}
