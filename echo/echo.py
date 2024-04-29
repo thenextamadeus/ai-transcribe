@@ -206,49 +206,74 @@ def echoSpeaks(response):
     playsound("../sounds/echo-v2-talks.mp3")
 
 
-# # # # Trigger Actions # # # #
+# Define states
+STATE_IDLE = 0
+STATE_LISTENING = 1
+STATE_ACTIVE = 2
+
+# Trigger Actions
 trigger_actions = {
     "echo": echo,
     "document": document,
+    # Add more trigger actions here
 }
 
+# Function to handle state transitions and trigger actions
+def handle_interaction(audio, state):
+    try:
+        response = r.recognize_google(audio, show_all=True)
+        if response:
+            text = response["alternative"][0]["transcript"].lower()
+            print("Echo Heard: ", text)
+
+            if state == STATE_IDLE:
+                if "echo" in text:
+                    print("Entering listening state...")
+                    playsound("../sounds/echo-on.wav")  # Play sound to indicate listening
+                    return STATE_LISTENING
+
+            elif state == STATE_LISTENING:
+                for trigger, action in trigger_actions.items():
+                    if trigger in text:
+                        action()
+                        print("Entering active state...")
+                        return STATE_ACTIVE
+
+            elif state == STATE_ACTIVE:
+                for trigger, action in trigger_actions.items():
+                    if trigger in text:
+                        action()
+                    else:
+                        echo()  # Handle general queries
+
+                if "no further" in text:
+                    print("Returning to idle state...")
+                    return STATE_IDLE
+
+    except sr.UnknownValueError:
+        print("...")
+
+    return state  # No state change
 
 # main function
 with sr.Microphone() as source:
     print(intent)
-    # print("Transcribing incoming dispatch calls")
-    # transcribe(folder_path)
-
     print("Calibrating microphone...")
     r.adjust_for_ambient_noise(source, duration=5)
     print("Microphone calibrated.")
-
-    # summaryIncoming()
-    
 
     # Trigger Detection Parameters (shorter = potential faster response)
     r.pause_threshold = tPause
     r.phrase_time_limit = tPhrase
 
+    state = STATE_IDLE
+
     while True:
         print("Echo Listening...")
         audio = r.listen(source, phrase_time_limit=r.phrase_time_limit)
 
-        try:
-            response = r.recognize_google(audio, show_all=True)
-            if response:
-                text = response["alternative"][0]["transcript"].lower()
-                print("Echo Heard: ", text)
+        state = handle_interaction(audio, state)
 
-                for trigger, action in trigger_actions.items():
-                    if trigger in text:
-                        action()
-                        break
-                
-                if "exit exit" in text:
-                    print("Exiting the program...")
-                    break
-
-        except sr.UnknownValueError:
-            print("...")
-
+        # if "exit exit" in text:
+        #     print("Exiting the program...")
+        #     break
