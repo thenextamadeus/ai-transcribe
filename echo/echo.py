@@ -44,7 +44,7 @@ if vitals_file.exists():
 with open("./instructions/document.json", "r") as f:
     categories = json.load(f)
 
-with open("instructions/youAreEcho.json", "r") as f:
+with open("./instructions/youAreEcho.json", "r") as f:
     instructions = json.load(f)
 
 # Load global variables
