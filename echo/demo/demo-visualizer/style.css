@@ -1,0 +1,42 @@
+/* Global Variables */
+/* Font Family, System Font, Sans Serif */
+:root {
+    --typeface: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    
+    /* FONT SIZE */
+    --textS: 12px;
+    --textM: 16px;
+    --textL: 32px;
+
+    /* SPACING */
+    --space1: 8px;
+    --space2: 16px;
+    --space3: 24px;
+    
+    /* CORNER RADIUS */
+    --cardRadius: 8px;
+    
+    /* COLORS */
+    --bkgColor: #f0f0f0;
+    --textColor: #333;
+    --borderColor: #ccc;
+}
+
+/* EDITING BASE STATS */
+
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+div {
+    border-radius: var(--space1);
+    padding: var(--space2);
+    flex-direction: row;
+}
+
+p {
+    font-family: var(--typeface);
+    font-size: var(--textM);
+    color: var(--textColor);
+}
