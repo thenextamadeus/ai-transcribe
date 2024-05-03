@@ -6,7 +6,9 @@ import speech_recognition as sr
 # Define global variables for audio file paths
 AUDIO_FILE_PATH_PRESS = "./demo-audio/echo-listening.wav"
 AUDIO_FILE_PATH_RELEASE = "./demo-audio/echo-heard.wav"
-AUDIO_FILE_PATH_RESPOND = "./demo-audio/echo-says-1.mp3"
+AUDIO_FILE_PATH_NOTIFY = "./demo-audio/echo-notify.wav"
+AUDIO_FILE_PATH_ACKNOWLEDGE = "./demo-audio/echo-says-1.mp3"
+AUDIO_FILE_PATH_SUMMARY = "./demo-audio/echo-says-suggestion.mp3"
 
 # Global Parameters for Speech Recognition
 mic = sr.Microphone(0)
@@ -55,7 +57,10 @@ def on_release(key):
     if key == keyboard.Key.space:
         print('Spacebar released')
         playsound(AUDIO_FILE_PATH_RELEASE)
-        playsound(AUDIO_FILE_PATH_RESPOND)
+        playsound(AUDIO_FILE_PATH_ACKNOWLEDGE)
+        time.sleep(1)
+        playsound(AUDIO_FILE_PATH_NOTIFY)
+        playsound(AUDIO_FILE_PATH_SUMMARY)
         spacebar_pressed = False
     elif key == keyboard.Key.esc:
         print('Exiting the program...')

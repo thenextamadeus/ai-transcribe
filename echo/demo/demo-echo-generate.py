@@ -12,18 +12,8 @@ client = OpenAI(api_key=apiKey)
 
 intent = "demo-echo.py is a demo day example of an extremely linear interaction with echo, WIZARD OF OZ PROTOTYPE"
 
-response_1 = "Vitals Captured."
-response_2 = "Echo to Unit 24, Receiving"
-# response_3 = ""
-
-
-# Sound files
-soundEchoRunning = "../fresh-sounds/echo-running.wav"
-soundEchoListening = "../fresh-sounds/echo-listening.wav"
-soundEchoHeard = "../fresh-sounds/echo-heard.wav"
-soundEchoIdle = "../fresh-sounds/echo-idle.wav"
-soundEchoLeaving = "../fresh-sounds/echo-leaving.wav"
-
+response_1 = "Heart Rate Dropped Significantly. please recording vitals at 1 minute intervals."
+FILENAME = "echo-says-suggestion.mp3"
 
 # Initialize a counter
 counter = 1
@@ -32,7 +22,7 @@ def echoSpeaks(response):
     global counter
 
     # Increment the counter
-    filename = f"./demo-audio/echo-says-{counter}.mp3"
+    filename = FILENAME
     counter += 1
 
     # Text to speech, using OpenAI
@@ -52,13 +42,6 @@ def main():
 
     echoSpeaks(response_1)
     print("response_1: ", response_1)
-
-    echoSpeaks(response_2)
-    print("response_2: ", response_2)
-
-    
-    # echoSpeaks(response_3)
-    # print("response_3: ", response_3)
 
 # Run the main function
 if __name__ == "__main__":
