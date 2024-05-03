@@ -1,13 +1,8 @@
 # Initialize libraries
 import os
-import json
-from pathlib import Path
-from datetime import datetime
 from playsound import playsound
 from dotenv import load_dotenv
-from gtts import gTTS
 from openai import OpenAI
-import speech_recognition as sr
 
 # Activate env
 load_dotenv()
@@ -15,13 +10,11 @@ apiKey = os.getenv("APIKEY")
 lang = 'en'
 client = OpenAI(api_key=apiKey)
 
-intent = "demo-echo.py is a demo day example of an extremely linear interaction with echo, based off a script."
+intent = "demo-echo.py is a demo day example of an extremely linear interaction with echo, WIZARD OF OZ PROTOTYPE"
 
-
-# Define global variables
-# Define speech recognition variables
-mic = sr.Microphone()
-r = sr.Recognizer()
+response_1 = "Echo, online"
+response_2 = "Heart Rate has fluctuated, protocol suggests recording vitals at 3 minute intervals"
+# response_3 = ""
 
 
 # Sound files
@@ -31,83 +24,42 @@ soundEchoHeard = "../fresh-sounds/echo-heard.wav"
 soundEchoIdle = "../fresh-sounds/echo-idle.wav"
 soundEchoLeaving = "../fresh-sounds/echo-leaving.wav"
 
-# Global phrase/pause parameters
-gPause = 0.7  # This represents the minimum length of silence (in seconds) that will register as the end of a phrase. The recognizer keeps listening until it encounters this duration of silence after speech.
-gPhrase = 5  # This is the maximum number of seconds that the recognizer will allow a phrase to continue before stopping and returning the audio captured until that point.
 
-# Trigger detection parameters (shorter = potential faster response)
-tPause = 1
-tPhrase = 5
+# Initialize a counter
+counter = 1
 
+def echoSpeaks(response):
+    global counter
 
-# Load JSON files
-vitals_data = {}
+    # Increment the counter
+    filename = f"./demo-audio/echo-says-{counter}.mp3"
+    counter += 1
 
-# Instruction Files
-vitals_file = Path("./instructions/document.json")
+    # Text to speech, using OpenAI
+    with client.audio.speech.with_streaming_response.create(
+        model="tts-1",
+        voice="nova",
+        input=str(response)
+    ) as response:
+        # This doesn't seem to be *actually* streaming, it just creates the file
+        # and then doesn't update it until the whole generation is finished
+        response.stream_to_file(filename)
 
-# Load existing data if the file exists
-if vitals_file.exists():
-    with open(vitals_file, "r") as f:
-        vitals_data = json.load(f)
+    playsound(filename)
 
-with open("./instructions/youAreEcho.json", "r") as f:
-    instructions = json.load(f)
+def main():
+    global counter
 
+    echoSpeaks(response_1)
+    print("response_1: ", response_1)
 
-with open(vitals_file, "r") as f:
-    categories = json.load(f)
+    echoSpeaks(response_2)
+    print("response_2: ", response_2)
 
-# The Script
-# Note that this would be possible with echo, but for the simplicity of the audience, we will be using a linear script
-# # Hey Echo
-# # Echo Beeps
-# # Document Vitals
-# # Echo Vitals Captured OR Beep
-# # be able to be silently listening for document again
-# # Document Vitals 2.0
-# # Call echo to notify us of the idfference
-# # Thanks echo
-# # Echo Beeps
-
-
-
-# main function
-with mic as source:
-    print(intent)
-    # print("Transcribing incoming dispatch calls")
-    # transcribe(folder_path)
-
-    print("Calibrating microphone...")
-    r.adjust_for_ambient_noise(source, duration=5)
-    print("Microphone calibrated.")
-
-    # summaryIncoming()
     
+    # echoSpeaks(response_3)
+    # print("response_3: ", response_3)
 
-    # Trigger Detection Parameters (shorter = potential faster response)
-    r.pause_threshold = tPause
-    r.phrase_time_limit = tPhrase
-
-    while True:
-        print("Echo Listening...")
-        audio = r.listen(source, phrase_time_limit=r.phrase_time_limit)
-
-        try:
-            response = r.recognize_google(audio, show_all=True)
-            if response:
-                text = response["alternative"][0]["transcript"].lower()
-                print("Echo Heard: ", text)
-
-                for trigger, action in trigger_actions.items():
-                    if trigger in text:
-                        action()
-                        break
-                
-                if "exit exit" in text:
-                    print("Exiting the program...")
-                    break
-
-        except sr.UnknownValueError:
-            print("...")
-
+# Run the main function
+if __name__ == "__main__":
+    main()  
