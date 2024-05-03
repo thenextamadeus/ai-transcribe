@@ -12,8 +12,8 @@ client = OpenAI(api_key=apiKey)
 
 intent = "demo-echo.py is a demo day example of an extremely linear interaction with echo, WIZARD OF OZ PROTOTYPE"
 
-response_1 = "Echo, online"
-response_2 = "Heart Rate has fluctuated, protocol suggests recording vitals at 3 minute intervals"
+response_1 = "Vitals Captured."
+response_2 = "Echo to Unit 24, Receiving"
 # response_3 = ""
 
 
