@@ -41,11 +41,11 @@ def on_release(key):
 
 # Define your functions to be called on spacebar press and release
 def function_on_spacebar_press():
-    playsound("../fresh-sounds/echo-listening.wav")
+    playsound("./demo-audio/echo-listening.wav")
     print("Function on spacebar press")
 
 def function_on_spacebar_release():
-    playsound("../fresh-sounds/echo-heard.wav")
+    playsound("./demo-audio/echo-heard.wav")
     print("Function on spacebar release")
 
 # Start listener
