@@ -20,7 +20,7 @@ intent = "states-echo.py is a file that organizes echo functions into an intuiti
 
 # Define global variables
 # Define speech recognition variables
-mic = sr.Microphone()
+mic = sr.Microphone(0)
 r = sr.Recognizer()
 
 
